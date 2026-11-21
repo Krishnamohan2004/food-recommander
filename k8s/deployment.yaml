@@ -1,0 +1,32 @@
+# k8s/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fruit-recommender
+  labels:
+    app: fruit-recommender
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fruit-recommender
+  template:
+    metadata:
+      labels:
+        app: fruit-recommender
+    spec:
+      containers:
+        - name: app
+          image: <PLACEHOLDER_IMAGE>
+          ports:
+            - containerPort: 80
+          env:
+            - name: PORT
+              value: "80"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
