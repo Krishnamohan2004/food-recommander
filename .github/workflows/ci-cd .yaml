@@ -50,10 +50,12 @@ jobs:
           docker build -t "$IMAGE_URI" .
           docker push "$IMAGE_URI"
 
-      - name: Set up Kubeconfig
+      - name: Set up EKS Kubeconfig
         run: |
-          mkdir -p "$HOME/.kube"
-          echo '${{ secrets.KUBE_CONFIG_DATA }}' | base64 -d > "$HOME/.kube/config"
+          aws eks update-kubeconfig \
+            --name clusters \
+            --region "$AWS_REGION"
+
           kubectl config current-context
 
       - name: Deploy to Kubernetes
