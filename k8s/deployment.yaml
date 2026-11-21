@@ -19,10 +19,10 @@ spec:
         - name: app
           image: <PLACEHOLDER_IMAGE>
           ports:
-            - containerPort: 80
+            - containerPort: 8501
           env:
             - name: PORT
-              value: "80"
+              value: "8501"
           resources:
             requests:
               cpu: "100m"
